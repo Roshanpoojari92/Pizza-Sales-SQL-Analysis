@@ -1,112 +1,108 @@
-🍕 Pizza Sales Analysis – SQL Server Project
-📌 Project Overview
+# 🍕 Pizza Sales Analysis | SQL Server Project
 
-This project analyzes pizza sales data using Microsoft SQL Server (SSMS) to uncover key business insights such as revenue trends, customer ordering behavior, and top-performing pizzas.
-The project progresses from basic SQL queries to advanced analytics using window functions and CTEs.
+## 📌 Project Overview
+This project is an end-to-end **SQL Server data analysis project** focused on analyzing pizza sales data to derive meaningful business insights.  
+Using **Microsoft SQL Server (SSMS)**, raw CSV data was imported, structured into relational tables, and analyzed using **basic to advanced SQL queries**.
 
-🛠 Tools & Technologies
+The project demonstrates a strong understanding of **database design, data cleaning, joins, aggregations, and analytical SQL concepts** commonly used by Data Analysts.
 
-Database: Microsoft SQL Server
+---
 
-Query Tool: SQL Server Management Studio (SSMS)
+## 🛠 Tools & Technologies
+- **Database:** Microsoft SQL Server  
+- **Query Tool:** SQL Server Management Studio (SSMS)  
+- **Language:** SQL  
+- **Data Format:** CSV files  
 
-Language: SQL
+---
 
-Data Source: CSV files (Orders, Order Details, Pizzas, Pizza Types)
+## 🗂 Dataset Description
+The analysis is based on four datasets:
 
-🗂 Database Schema
-Tables Used
+- **orders.csv** – order date and time information  
+- **order_details.csv** – pizzas ordered and quantities  
+- **pizzas.csv** – pizza size and price details  
+- **pizza_types.csv** – pizza names, categories, and ingredients  
 
-orders
+---
 
-order_id (PK)
+## 🧱 Database Schema
 
-date
+### 1️⃣ orders
+| Column | Description |
+|------|------------|
+| order_id | Unique order identifier |
+| date | Order date |
+| time | Order time |
 
-time
+### 2️⃣ order_details
+| Column | Description |
+|------|------------|
+| order_details_id | Unique row identifier |
+| order_id | Order reference |
+| pizza_id | Pizza reference |
+| quantity | Number of pizzas ordered |
 
-order_details
+### 3️⃣ pizzas
+| Column | Description |
+|------|------------|
+| pizza_id | Unique pizza identifier |
+| pizza_type_id | Pizza type reference |
+| size | Pizza size (S, M, L, XL) |
+| price | Pizza price |
 
-order_details_id (PK)
+### 4️⃣ pizza_types
+| Column | Description |
+|------|------------|
+| pizza_type_id | Pizza type identifier |
+| name | Pizza name |
+| category | Pizza category |
+| ingredients | Ingredients used |
 
-order_id (FK)
+---
 
-pizza_id
+## 📊 Analysis Performed
 
-quantity
+### 🔹 Basic SQL Analysis
+- Total number of orders placed  
+- Total revenue generated from pizza sales  
+- Highest priced pizza  
+- Most common pizza size ordered  
+- Top 5 most ordered pizza types  
 
-pizzas
+---
 
-pizza_id (PK)
+### 🔹 Intermediate SQL Analysis
+- Total quantity ordered by pizza category  
+- Hour-wise order distribution  
+- Category-wise order distribution  
+- Average number of pizzas ordered per day  
+- Top 3 pizza types based on revenue  
 
-pizza_type_id
+---
 
-size
+### 🔹 Advanced SQL Analysis
+- Percentage contribution of each pizza to total revenue  
+- Cumulative revenue analysis using window functions  
+- Top 3 pizzas by revenue within each category  
 
-price
+---
 
-pizza_types
+## 🧠 SQL Concepts Used
+- INNER JOINs
+- GROUP BY & aggregate functions
+- Subqueries
+- Common Table Expressions (CTEs)
+- Window functions (`OVER`, `RANK`)
+- Date & time functions
+- Handling reserved keywords (`[date]`, `[time]`)
+- Data type optimization (`DECIMAL` for pricing)
 
-pizza_type_id (PK)
+---
 
-name
+## 📈 Sample Query (Cumulative Revenue)
 
-category
-
-ingredients
-
-📊 Analysis Performed
-🔹 Basic SQL Analysis
-
-Total number of orders placed
-
-Total revenue generated from pizza sales
-
-Highest priced pizza
-
-Most common pizza size ordered
-
-Top 5 most ordered pizza types by quantity
-
-🔹 Intermediate SQL Analysis
-
-Total quantity ordered by pizza category
-
-Order distribution by hour of the day
-
-Category-wise order distribution
-
-Average number of pizzas ordered per day
-
-Top 3 pizza types based on revenue
-
-🔹 Advanced SQL Analysis
-
-Percentage contribution of each pizza type to total revenue
-
-Cumulative revenue generated over time (window functions)
-
-Top 3 pizzas by revenue within each category (CTE + ranking)
-
-🧠 Key SQL Concepts Used
-
-JOIN (INNER JOIN)
-
-GROUP BY & aggregate functions
-
-Subqueries
-
-Common Table Expressions (CTE)
-
-Window Functions (OVER, RANK)
-
-Date & Time functions
-
-Handling reserved keywords ([date], [time])
-
-Data type optimization (DECIMAL vs FLOAT)
-
-📈 Sample Advanced Query
+```sql
 SELECT 
     o.[date] AS order_date,
     SUM(od.quantity * p.price) AS daily_revenue,
@@ -117,41 +113,3 @@ JOIN order_details od ON o.order_id = od.order_id
 JOIN pizzas p ON od.pizza_id = p.pizza_id
 GROUP BY o.[date]
 ORDER BY o.[date];
-
-✅ Business Insights
-
-Identified peak ordering hours
-
-Determined highest revenue-generating pizzas
-
-Analyzed category-wise performance
-
-Tracked revenue growth over time
-
-Supported data-driven decision making
-
-📌 How to Run This Project
-
-Create a database in SQL Server
-
-Import CSV files using Import Flat File Wizard
-
-Verify table schemas and data types
-
-Execute SQL queries in order (Basic → Advanced)
-
-🚀 Future Enhancements
-
-Power BI dashboard for visualization
-
-Stored procedures for automation
-
-Indexing for performance optimization
-
-Monthly & quarterly trend analysis
-
-👤 Author
-
-Roshan
-📊 Aspiring Data Analyst | SQL | Power BI | Analytics
-📌 Open to data analyst opportunities
